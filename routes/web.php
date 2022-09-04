@@ -10,6 +10,7 @@ use App\Http\Controllers\PostController;
 
 // Middlewares
 use App\Http\Middleware\ApiAuthMiddleware;
+use App\Http\Middleware\Cors;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,7 +62,7 @@ Route::get('/test-orm', [PruebasController::class, 'testOrm']);
 // Route::get('/entrada/pruebas', [PostController::class, 'pruebas']);
 
 // Rutas del controlador de usuarios
-Route::post('/api/register', [UserController::class, 'register']);
+Route::post('/api/register', [UserController::class, 'register'])->middleware(Cors::class);
 Route::post('/api/login', [UserController::class, 'login']);
 Route::put('/api/user/update', [UserController::class, 'update']);
 Route::post('/api/user/upload', [UserController::class, 'upload'])->middleware(ApiAuthMiddleware::class);
